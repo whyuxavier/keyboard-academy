@@ -1,0 +1,67 @@
+// База вправ для тренажера швидкості. Легко доповнювати: додавайте слова, речення й тексти у відповідні масиви.
+
+export const TEXTS = {
+  uk: {
+    home: 'фівапролджє',
+    letters: 'йцукенгшщзхїфівапролджєячсмитьбюґ',
+    words: {
+      easy: ['дім', 'сад', 'ліс', 'кіт', 'пес', 'мак', 'сік', 'чай', 'мед', 'сир', 'хліб', 'суп', 'рік', 'день', 'ніч', 'сон', 'небо', 'море', 'гора', 'поле', 'вода', 'рука', 'нога', 'око', 'вухо', 'ніс', 'зуб', 'мама', 'тато', 'брат', 'сестра', 'син', 'доня', 'друг', 'гість', 'стіл', 'стілець', 'ліжко', 'вікно', 'двері', 'лампа', 'книга', 'зошит', 'ручка', 'папір', 'сонце', 'вітер', 'дощ', 'сніг', 'зима', 'весна', 'літо', 'осінь', 'ранок', 'вечір', 'тиша', 'сміх', 'пісня', 'казка', 'гра', 'мир', 'дорога', 'міст', 'річка', 'озеро', 'кава', 'груша', 'слива', 'вишня', 'кавун', 'диня', 'цибуля', 'олія', 'сіль', 'цукор', 'так', 'ні', 'добре', 'тепло', 'світло', 'нове', 'старе', 'малий', 'великий'],
+      medium: ['ранковий', 'сніданок', 'обід', 'вечеря', 'бабуся', 'дідусь', 'онука', 'онук', 'сусідка', 'родина', 'подарунок', 'святкування', 'листівка', 'телефон', 'повідомлення', 'фотографія', 'зустріч', 'прогулянка', 'город', 'помідори', 'огірки', 'картопля', 'яблуко', 'пиріжок', 'варення', 'борщ', 'вареники', 'млинці', 'тістечко', 'магазин', 'аптека', 'пошта', 'бібліотека', 'лікарня', 'зупинка', 'автобус', 'потяг', 'квиток', 'валіза', 'подорож', 'музей', 'театр', 'концерт', 'газета', 'журнал', 'читання', 'навчання', 'вчитель', 'учениця', 'урок', 'перерва', 'годинник', 'календар', 'тиждень', 'неділя', 'понеділок', 'п\'ятниця', 'м\'ята', 'ім\'я', 'сім\'я', 'пам\'ять', 'здоров\'я', 'ґанок', 'ґудзик', 'ґрунт', 'аґрус', 'їжак', 'їжа', 'їхати', 'країна', 'єнот', 'єдність', 'жовтий', 'зелений', 'синій', 'червоний', 'теплий', 'смачний', 'тихий', 'щедрий', 'щастя', 'щоденний', 'чашка', 'тарілка', 'ложка', 'виделка', 'рушник', 'ковдра', 'подушка', 'шафа', 'полиця', 'дзеркало'],
+      hard: ['клавіатура', 'комп\'ютер', 'інформація', 'електронний', 'відповідальність', 'можливість', 'приготування', 'фотоапарат', 'батьківщина', 'привітання', 'надзвичайно', 'майстерність', 'спостереження', 'нагадування', 'налаштування', 'завантаження', 'користувач', 'безпечний', 'розклад', 'подорожувати', 'зосередженість', 'наполегливість', 'щонайменше', 'співрозмовник', 'взаємодопомога', 'ґречний', 'ґвалтовно', 'обов\'язково', 'з\'єднання', 'роз\'яснення', 'п\'ятнадцять', 'дев\'ятнадцять', 'різноманітний', 'енциклопедія', 'архітектура', 'телевізор', 'холодильник', 'пилосос', 'мікрохвильовка', 'вишиванка', 'віддзеркалення', 'передплата', 'перепочинок', 'щебетання', 'хризантема', 'шоколадний', 'журавлина', 'черешня', 'полуниця', 'смородина'],
+    },
+    sentences: {
+      easy: ['Сьогодні гарна погода.', 'Мама варить смачний борщ.', 'Кіт спить на теплому ліжку.', 'Ми п\'ємо чай із медом.', 'Вранці співають пташки.', 'У саду ростуть яблука.', 'Діти граються у дворі.', 'Я люблю читати книги.', 'Над річкою світить сонце.', 'Бабуся в\'яже теплий шарф.', 'Дідусь читає газету.', 'Ввечері ми гуляємо в парку.', 'На столі стоїть ваза з квітами.', 'Сусід привітався зранку.', 'Сніг укрив усе подвір\'я.', 'Онука прийде в неділю.', 'Хліб ще теплий.', 'Ось і настала весна.'],
+      medium: ['Кожного ранку я роблю легку зарядку й снідаю вівсянкою.', 'Онука навчила мене надсилати фотографії з телефона.', 'У неділю вся родина збереться на святковий обід.', 'Бібліотека працює з дев\'ятої ранку до шостої вечора.', 'Не забудьте взяти парасольку, бо обіцяли дощ.', 'Влітку ми їздили до моря й купалися щодня.', 'Найкращі вареники виходять із вишнями та сиром.', 'Щоб друкувати швидко, спершу навчіться друкувати точно.', 'Восени ліс стає жовтим, червоним і золотим.', 'Сусідка пригостила нас пирогом із яблуками.', 'Потяг відправляється о пів на восьму з першої колії.', 'Я записую рецепти в окремий зошит, щоб не загубити.', 'Мій онук вчиться грати на гітарі.', 'Краще пізно, ніж ніколи.', 'Тиха вода греблю рве.', 'Ґанок нашої хати прикрашають квіти.'],
+      hard: ['Якщо комп\'ютер завис, спершу зачекайте хвилину, а вже потім перезавантажуйте його.', 'Щоб зберегти документ, натисніть Ctrl + S і введіть зрозумілу назву файлу.', 'Ґречність, терпіння й доброзичливість допомагають знайти спільну мову з будь-ким.', 'Наполеглива щоденна практика - найнадійніший шлях до майстерності.', 'Після прогулянки ми пили чай із м\'ятою, смородиною й чебрецем.', 'У п\'ятницю о 15:30 відбудеться зустріч клубу любителів книжок.', 'Електронна пошта дозволяє надіслати листа за кілька секунд у будь-яку країну.', 'Перед тим як натиснути "Надіслати", ще раз уважно перечитайте повідомлення.', 'Хризантеми цвітуть пізньої осені, коли інші квіти вже відпочивають.', 'Ми домовилися зустрітися біля музею, щоб разом подивитися нову виставку.', 'Друкуйте рівномірно: краще повільно й без помилок, ніж швидко й навмання.', 'Їжак тупотів стежкою, шукаючи яблука під старою грушею.'],
+    },
+    passages: {
+      easy: [
+        'Наш сад невеликий, але дуже затишний. Навесні тут цвітуть вишні й абрикоси. Влітку ми збираємо ягоди, а восени варимо варення. Взимку в саду тихо, і лише птахи прилітають до годівнички.',
+        'Щонеділі до нас приходять онуки. Ми разом печемо млинці, граємо в настільні ігри й розглядаємо старі фотографії. Діти слухають історії, а потім розповідають про свої новини.',
+        'Кіт Мурчик любить спати на підвіконні. Коли світить сонце, він ліниво мружить очі. Увечері Мурчик приходить до нас і муркоче, поки його гладять.',
+      ],
+      medium: [
+        'Ранкова прогулянка - чудовий початок дня. Свіже повітря бадьорить краще за каву, а спокійний крок допомагає зібратися з думками. Я завжди обираю маршрут уздовж річки: там тихо, співають птахи, і можна зустріти знайомих, які теж люблять ранкову тишу.',
+        'Навчитися друкувати наосліп під силу кожному, незалежно від віку. Головне - регулярність. Десять хвилин щодня дають більше, ніж година раз на тиждень. Пальці поступово запам\'ятовують розташування клавіш, і з часом ви помітите, що вже не шукаєте літери очима.',
+        'Український борщ готують у кожній родині по-своєму. Хтось додає квасолю, хтось - гриби чи чорнослив. Але завжди потрібні буряк, капуста, картопля, морква й цибуля. А найсмачнішим борщ стає наступного дня, коли добре настоїться.',
+      ],
+      hard: [
+        'Електронна пошта стала звичною частиною нашого життя. Щоб лист дійшов, потрібно правильно вказати адресу: вона складається з імені користувача, знака "равлик" і назви поштового сервісу. Тема листа має коротко пояснювати, про що йдеться, а сам текст - бути ввічливим і зрозумілим. Перед надсиланням варто перевірити, чи додано всі потрібні файли.',
+        'Безпека в інтернеті починається з простих звичок. Використовуйте складні паролі з літер, цифр і символів, не повідомляйте їх стороннім і не відкривайте підозрілих посилань. Якщо вам телефонують і просять назвати код із повідомлення, просто покладіть слухавку: справжні працівники банку ніколи про це не просять.',
+        'Ґрунтовні знання з\'являються поступово. Спершу ми вчимося розпізнавати клавіші, потім - тримати руки в правильній позиції, а згодом - друкувати цілі речення, не дивлячись на клавіатуру. Кожна помилка - це не поразка, а підказка: вона показує, над чим варто ще попрацювати.',
+      ],
+    },
+  },
+  en: {
+    home: 'asdfghjkl',
+    letters: 'qwertyuiopasdfghjklzxcvbnm',
+    words: {
+      easy: ['cat', 'dog', 'sun', 'sea', 'sky', 'tea', 'milk', 'bread', 'home', 'book', 'tree', 'door', 'room', 'chair', 'table', 'cup', 'hand', 'foot', 'eye', 'day', 'night', 'week', 'year', 'time', 'rain', 'snow', 'wind', 'cloud', 'park', 'road', 'river', 'lake', 'hill', 'farm', 'apple', 'pear', 'plum', 'soup', 'cake', 'egg', 'fish', 'bird', 'mom', 'dad', 'son', 'friend', 'name', 'word', 'song', 'game', 'walk', 'talk', 'read', 'write', 'look', 'make', 'take', 'give', 'find', 'help', 'good', 'nice', 'warm', 'cold', 'new', 'old', 'big', 'small', 'red', 'blue', 'green', 'yes', 'no', 'and', 'the', 'with', 'for', 'from', 'here', 'there'],
+      medium: ['morning', 'evening', 'breakfast', 'dinner', 'kitchen', 'garden', 'window', 'family', 'grandma', 'grandpa', 'brother', 'sister', 'neighbor', 'letter', 'message', 'picture', 'phone', 'camera', 'ticket', 'station', 'library', 'pharmacy', 'market', 'museum', 'theatre', 'concert', 'holiday', 'birthday', 'present', 'journey', 'weather', 'summer', 'winter', 'autumn', 'spring', 'flower', 'orange', 'banana', 'cherry', 'potato', 'tomato', 'pancake', 'teacher', 'student', 'lesson', 'answer', 'question', 'minute', 'second', 'Monday', 'Friday', 'Sunday', 'happy', 'quiet', 'gentle', 'simple', 'careful', 'slowly', 'quickly', 'together', 'always', 'never', 'often', 'because', 'before', 'after', 'today', 'tomorrow', 'yesterday', 'enough', 'people', 'little', 'country', 'city', 'village'],
+      hard: ['keyboard', 'computer', 'information', 'opportunity', 'responsibility', 'experience', 'comfortable', 'neighbourhood', 'understanding', 'conversation', 'photograph', 'application', 'notification', 'subscription', 'temperature', 'refrigerator', 'encyclopedia', 'architecture', 'independent', 'environment', 'appreciation', 'concentration', 'determination', 'extraordinary', 'accessibility', 'organization', 'password', 'download', 'settings', 'attachment', 'everything', 'wonderful', 'beautiful', 'knowledge', 'technology', 'professional', 'communication', 'celebration', 'strawberry', 'chrysanthemum', 'necessary', 'definitely', 'accommodate', 'occasionally', 'recommend', 'immediately', 'particularly', 'surprisingly', 'thoroughly', 'whatever'],
+    },
+    sentences: {
+      easy: ['The sun is warm today.', 'My cat sleeps on the bed.', 'We drink tea with honey.', 'Birds sing in the morning.', 'Apples grow in our garden.', 'I like to read books.', 'The children play outside.', 'Grandpa reads the paper.', 'We walk in the park.', 'Snow covers the yard.', 'The bread is still warm.', 'Spring is here at last.', 'Please close the door.', 'It is a lovely day.', 'Call me after lunch.'],
+      medium: ['Every morning I do light exercises and eat oatmeal.', 'My granddaughter taught me how to send photos from my phone.', 'On Sunday the whole family will meet for a holiday dinner.', 'The library is open from nine in the morning until six.', 'Do not forget your umbrella, because rain is expected.', 'Last summer we went to the sea and swam every day.', 'To type fast, first learn to type accurately.', 'In autumn the forest turns yellow, red and gold.', 'Our neighbor treated us to a warm apple pie.', 'The train leaves at half past seven from platform one.', 'Better late than never.', 'Practice a little every day and you will see progress.'],
+      hard: ['If your computer freezes, wait a minute before you restart it.', 'To save a document, press Ctrl + S and type a clear file name.', 'Patience, kindness and curiosity help us find common ground with anyone.', 'Steady daily practice is the most reliable path to real mastery.', 'On Friday at 3:30 PM the book club will meet in the reading room.', 'Before you press "Send", read your message carefully once more.', 'Email lets you deliver a letter to any country in a few seconds.', 'Type evenly: slow and accurate is better than fast and careless.', 'We agreed to meet near the museum to see the new exhibition together.', "Don't worry about mistakes; they show you what to practice next."],
+    },
+    passages: {
+      easy: [
+        'Our garden is small but very cozy. In spring the cherry trees bloom. In summer we pick berries, and in autumn we make jam. In winter the garden is quiet, and only birds visit the feeder.',
+        'Every Sunday our grandchildren come to visit. We bake pancakes together, play board games and look at old photos. The children listen to stories and then share their own news.',
+        'Our cat loves to sleep on the windowsill. When the sun shines, he slowly closes his eyes. In the evening he comes to us and purrs while we pet him.',
+      ],
+      medium: [
+        'A morning walk is a wonderful way to start the day. Fresh air wakes you up better than coffee, and a calm pace helps you gather your thoughts. I always choose the path along the river: it is quiet there, birds are singing, and I often meet friends who also enjoy the morning silence.',
+        'Anyone can learn to touch type, no matter how old they are. The key is regular practice. Ten minutes a day gives more than one hour once a week. Your fingers slowly remember where the keys are, and one day you notice that you no longer search for letters with your eyes.',
+      ],
+      hard: [
+        'Email has become a normal part of our lives. To make sure a letter arrives, you need the correct address: it consists of a user name, the @ sign and the name of the mail service. The subject line should briefly explain what the message is about, and the text itself should be polite and clear. Before sending, check that all the necessary files are attached.',
+        'Online safety starts with simple habits. Use strong passwords made of letters, numbers and symbols, never share them with strangers, and do not open suspicious links. If someone calls and asks you to read out a code from a text message, just hang up: real bank employees never ask for that.',
+      ],
+    },
+  },
+};
+
+// Адаптивні дрилі: поєднуємо слабкий символ із частими літерами.
+export const DRILL_PARTNERS = { uk: 'аоінервтс', en: 'aeinorsth' };
