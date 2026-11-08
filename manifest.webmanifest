@@ -1,0 +1,21 @@
+{
+  "name": "Keyboard Academy — тренажер клавіатури",
+  "short_name": "Keyboard Academy",
+  "description": "Сліпий друк, швидкість і комбінації клавіш. Українська та англійська розкладки.",
+  "lang": "uk",
+  "dir": "ltr",
+  "start_url": "./#/home",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F5F4F0",
+  "theme_color": "#2F6BD8",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
