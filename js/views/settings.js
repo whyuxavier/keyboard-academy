@@ -42,7 +42,6 @@ export function render(el) {
         ${sw('unlockAll', 'Відкрити всі уроки', 'Можна проходити уроки в будь-якому порядку.')}
         <div class="field"><span class="lbl">Тривалість щоденного тренування</span>${seg('dailyMinutes', [[3, '3 хв'], [5, '5 хв'], [10, '10 хв']], s.dailyMinutes)}</div>
         <div class="field"><span class="lbl">Мова щоденного тренування</span>${seg('dailyLang', [['auto', 'Як мова вправ'], ['uk', 'Українська'], ['en', 'English']], s.dailyLang)}</div>
-        ${sw('dailyShortcut', 'Комбінація дня в щоденному тренуванні')}
       </section>
 
       <section class="card stack" aria-labelledby="s-data">

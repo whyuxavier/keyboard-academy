@@ -1,10 +1,10 @@
 // Головна сторінка.
 import { store } from '../core/store.js';
-import { icon, esc, fmtDuration, dayKey } from '../core/ui.js';
+import { icon, esc, fmtDuration, dayKey, flameArt, plural } from '../core/ui.js';
 import { COURSES } from '../content/lessons.js';
 import { SHORTCUTS } from '../content/shortcuts.js';
 import { SCENARIOS } from '../content/scenarios.js';
-import { lessonsDone, streak, practicedToday, mastered } from '../core/stats.js';
+import { lessonsDone, streak, practicedToday, mastered, dailyFlame } from '../core/stats.js';
 
 export function nextLessonIndex(lang) {
   const c = COURSES[lang];
@@ -92,6 +92,9 @@ export function render(el) {
   const masteredN = SHORTCUTS.filter(s => mastered(s.id)).length;
   const scnDone = SCENARIOS.filter(s => d.scenarios[s.id]?.done).length;
   const dailyDone = !!d.daily[dayKey()];
+  const fl = dailyFlame();
+  const flDays = `${fl.n} ${plural(fl.n, 'день', 'дні', 'днів')} поспіль`;
+  const flLabel = { lit: `вогник горить, ${flDays}`, risk: `${flDays}, сьогодні ще не виконано`, out: 'вогник згас', new: 'вогник ще не запалено' }[fl.state];
 
   el.innerHTML = `<div class="page">
     <section class="hero" aria-labelledby="hero-title">
@@ -101,6 +104,7 @@ export function render(el) {
         <div class="btn-row">
           <a class="btn primary" href="${primaryHref}">${icon('play')} ${esc(primaryLabel)}</a>
           <a class="btn" href="#/speed">${icon('gauge')} Перевірити швидкість</a>
+          <a class="btn btn-daily fl-${fl.state}" href="#/daily" aria-label="Щоденне тренування: ${flLabel}">${flameArt(fl.state)} Щоденне тренування${fl.n ? `<span class="fl-count" aria-hidden="true">${fl.n}</span>` : ''}</a>
         </div>
       </div>
       <div class="hero-art">${heroArt()}</div>
@@ -159,7 +163,7 @@ export function render(el) {
         <a class="card module-card" href="#/daily" style="min-height:0">
           <span class="m-ico mi-green">${icon('calendar')}</span>
           <h3>Щоденне тренування</h3>
-          <p>Близько ${d.settings.dailyMinutes} хвилин: розминка, швидкість, комбінація й завдання.</p>
+          <p>Близько ${d.settings.dailyMinutes} хвилин: розминка, друк на швидкість і коротке завдання.</p>
           <span class="go">${dailyDone ? 'Сьогодні вже виконано ✓' : 'Почати'} ${icon('right')}</span>
         </a>
       </div>

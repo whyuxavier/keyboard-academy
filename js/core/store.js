@@ -17,7 +17,6 @@ export function defaultSettings() {
     showFingers: true,      // кольори пальців на клавіатурі
     unlockAll: false,       // відкрити всі уроки
     dailyMinutes: 5,        // 3 | 5 | 10
-    dailyShortcut: true,
     dailyLang: 'auto',      // auto | uk | en
     speedCfg: null,
   };

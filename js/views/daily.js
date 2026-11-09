@@ -1,15 +1,24 @@
-// Щоденне тренування (~5 хвилин): розминка слабких символів, швидкість, комбінація дня, практичне завдання.
+// Щоденне тренування (~5 хвилин): розминка слабких символів, друк на швидкість, практичне завдання. Вогник показує серію днів.
 import { store } from '../core/store.js';
-import { icon, esc, dayKey, sound, combo, announce } from '../core/ui.js';
+import { icon, esc, dayKey, sound, announce, flameArt, plural } from '../core/ui.js';
 import { createTypingBlock } from '../core/typing.js';
 import { generate, generateAdaptive } from '../core/generate.js';
-import { weakChars, checkAchievements, mastered, streak, activity } from '../core/stats.js';
-import { SHORTCUTS } from '../content/shortcuts.js';
+import { weakChars, checkAchievements, dailyFlame, activity } from '../core/stats.js';
 import { MINI_TASKS } from '../content/scenarios.js';
-import { createPractice } from '../core/practice.js';
-import { markPracticed } from './shortcuts.js';
 import { setLast } from '../core/nav.js';
 import { LANG_NAMES } from '../core/layouts.js';
+
+const days = n => `${n} ${plural(n, 'день', 'дні', 'днів')} поспіль`;
+const FLAME_TEXT = {
+  lit: n => [days(n), 'Вогник горить. Повертайтеся завтра, щоб він не згас.'],
+  risk: n => [days(n), 'Пройдіть тренування сьогодні — інакше вогник згасне.'],
+  out: () => ['Вогник згас', 'Ви пропустили день. Пройдіть тренування — і запаліть його знову.'],
+  new: () => ['Запаліть вогник', 'Тренуйтеся щодня — він горітиме, доки не пропустите день.'],
+};
+export function flameCard(f = dailyFlame()) {
+  const [title, text] = FLAME_TEXT[f.state](f.n);
+  return `<div class="flame-card fl-${f.state}">${flameArt(f.state)}<div><b>${title}</b><span>${text}</span></div></div>`;
+}
 
 function seedPick(arr, salt = 0) {
   const k = dayKey();
@@ -25,21 +34,18 @@ export function render(el) {
   const minutes = s.dailyMinutes;
   const doneToday = !!store.data.daily[dayKey()];
   const weak = weakChars(lang, 4).map(w => w.c);
-  const todo = SHORTCUTS.filter(x => !mastered(x.id));
-  const sc = seedPick(todo.length ? todo : SHORTCUTS, 7);
   const task = seedPick(MINI_TASKS[lang], 3);
   const steps = [
     { id: 'warm', title: 'Розминка', desc: weak.length ? `Слабкі символи: ${weak.join(' ')}` : 'Основний ряд і прості слова' },
-    { id: 'speed', title: 'Швидкість', desc: `${minutes === 3 ? 30 : minutes === 10 ? 120 : 60} секунд друку слів` },
-    ...(s.dailyShortcut ? [{ id: 'sc', title: 'Комбінація дня', desc: `${sc.keys.join(' + ')} — ${sc.name}` }] : []),
-    { id: 'task', title: 'Практичне завдання', desc: 'Коротке повідомлення' },
+    { id: 'speed', title: 'Друк на швидкість', desc: `${minutes === 3 ? 30 : minutes === 10 ? 120 : 60} секунд друку слів` },
+    { id: 'task', title: 'Практичне завдання', desc: 'Коротке повідомлення або речення' },
   ];
-  let cur = -1, block = null, prCleanup = null;
+  let cur = -1, block = null;
   const results = {};
 
   el.innerHTML = `<div class="page">
     <div class="page-head"><div><h1>Щоденне тренування</h1><p>Близько ${minutes} хвилин, складених спеціально для вас. Мова: ${LANG_NAMES[lang]}. Змінити тривалість і мову можна в <a href="#/settings">налаштуваннях</a>.</p></div>
-      <span class="pill amber">${icon('flame')} ${streak()} днів поспіль</span></div>
+      <div data-flame>${flameCard()}</div></div>
     <ol class="steps card" data-steps style="margin-bottom:1.2rem">${steps.map((st, i) => `<li data-i="${i}"><span class="n">${i + 1}</span><span><b>${esc(st.title)}</b> · <span class="muted">${esc(st.desc)}</span></span></li>`).join('')}</ol>
     <div data-host></div>
   </div>`;
@@ -49,11 +55,11 @@ export function render(el) {
   host.innerHTML = `<div class="card done-screen">
     <div class="big-ico" style="background:var(--blue-soft);color:var(--blue)">${icon('calendar')}</div>
     <h2>${doneToday ? 'Сьогодні ви вже тренувалися' : 'Готові до тренування?'}</h2>
-    <p class="muted">${doneToday ? 'Чудово! Можна пройти ще раз — зайвим не буде.' : 'Чотири короткі кроки. Між ними можна перепочити.'}</p>
+    <p class="muted">${doneToday ? 'Чудово! Можна пройти ще раз — зайвим не буде.' : 'Три короткі кроки. Між ними можна перепочити.'}</p>
     <div class="btn-row"><button class="btn primary" type="button" data-go>${icon('play')} ${doneToday ? 'Пройти ще раз' : 'Почати'}</button></div></div>`;
   host.querySelector('[data-go]').addEventListener('click', next);
 
-  function clear() { if (block) { block.destroy(); block = null; } if (prCleanup) { prCleanup(); prCleanup = null; } host.innerHTML = ''; }
+  function clear() { if (block) { block.destroy(); block = null; } host.innerHTML = ''; }
   function next() {
     clear();
     cur++;
@@ -86,13 +92,6 @@ export function render(el) {
           body.querySelector('[data-next]').focus();
         },
       });
-    } else if (st.id === 'sc') {
-      body.innerHTML = `<div class="card"><div style="margin-bottom:.8rem">${combo(sc.keys, true)}</div><h3>${esc(sc.name)}</h3><p>${esc(sc.desc)}</p><p class="muted">${esc(sc.example)}</p><div data-pr></div>
-        <div class="btn-row" style="margin-top:1rem"><button class="btn primary" type="button" data-next disabled>Далі ${icon('right')}</button><button class="btn ghost" type="button" data-skip>Пропустити</button></div></div>`;
-      const nb = body.querySelector('[data-next]');
-      prCleanup = createPractice(body.querySelector('[data-pr]'), sc, () => { markPracticed(sc.id); results.sc = true; nb.disabled = false; nb.focus(); });
-      nb.addEventListener('click', next);
-      body.querySelector('[data-skip]').addEventListener('click', next);
     } else if (st.id === 'task') {
       body.innerHTML = `<div class="card"><p style="font-size:1.1rem">Надрукуйте повідомлення точно так, як написано (з великими літерами й розділовими знаками):</p>
         <p style="font-size:1.4rem;font-weight:650;background:var(--surface-2);padding:.8rem 1rem;border-radius:12px">${esc(task)}</p>
@@ -123,9 +122,10 @@ export function render(el) {
       <div class="tiles">
         ${results.warm ? `<div class="tile"><b>${results.warm.acc}%</b><span>точність розминки</span></div>` : ''}
         ${results.speed ? `<div class="tile accent"><b>${results.speed.wpm}</b><span>сл/хв</span></div>` : ''}
-        <div class="tile"><b>${streak()}</b><span>днів поспіль</span></div>
       </div>
+      <div class="flame-done">${flameCard()}</div>
       <div class="btn-row"><a class="btn primary" href="#/progress">Мій прогрес</a><a class="btn" href="#/home">На головну</a></div></div>`;
+    el.querySelector('[data-flame]').innerHTML = flameCard();
     host.firstElementChild.focus();
     announce('Тренування завершено');
   }

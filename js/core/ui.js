@@ -55,6 +55,14 @@ export function hydrateIcons(root = document) {
 }
 
 /* ---------- комбінації клавіш як клавіші ---------- */
+// Вогник щоденного тренування. state: lit | risk | out | new
+export function flameArt(state = 'lit') {
+  const smoke = state === 'out' ? '<path class="fl-smoke" d="M20 15c-3-3 3-5 0-9M27 13c-2-2 2-4 0-7"/>' : '';
+  return `<svg class="flame-art fl-${state}" viewBox="0 0 48 56" aria-hidden="true">${smoke}
+    <g class="fl-body"><path class="fl-outer" d="M24 54C12.5 54 5 46.4 5 36.2c0-8.6 6.6-13.6 8.4-22.4 4.6 2.4 7.6 6.6 8 11.4C24.6 21.6 26 16.6 25.4 10 33.6 15.4 43 24.6 43 36.2 43 46.4 35.5 54 24 54z"/>
+    <path class="fl-inner" d="M24 50c-5.4 0-9-3.7-9-8.6 0-4.6 3.6-6.8 4.6-11.2 2.6 1.4 4 3.6 4.4 6.2 1.6-1.4 2.4-3.4 2.4-5.6 3.6 2.6 6.6 6 6.6 10.6 0 4.9-3.6 8.6-9 8.6z"/></g></svg>`;
+}
+
 export function combo(keys, big = false) {
   return `<span class="combo${big ? ' big' : ''}" role="img" aria-label="${esc(keys.join(' плюс '))}">${keys.map(k => `<kbd class="kc">${esc(k)}</kbd>`).join('<span class="plus" aria-hidden="true">+</span>')}</span>`;
 }

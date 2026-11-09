@@ -490,3 +490,27 @@ table.t th,table.t td{border-bottom:1px solid var(--border);padding:.5rem .4rem;
 [data-motion="reduce"] *,[data-motion="reduce"] *::before,[data-motion="reduce"] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 @media (prefers-reduced-motion:reduce){ html:not([data-motion="full"]) *{transition-duration:.01ms!important;animation:none!important} }
 @media print{ .topbar,.sidebar{display:none} .layout{display:block} }
+
+/* ---------- вогник щоденного тренування ---------- */
+:root{--flame:#F2691C;--flame-core:#FFC53D}
+.flame-art{flex:none;width:1.25em;height:1.46em;overflow:visible}
+.fl-outer{fill:var(--flame)} .fl-inner{fill:var(--flame-core)}
+.fl-smoke{fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;opacity:.55}
+.flame-art.fl-risk .fl-body{opacity:.55}
+.flame-art.fl-out .fl-outer,.flame-art.fl-new .fl-outer{fill:var(--surface-2);stroke:var(--border-strong);stroke-width:2}
+.flame-art.fl-out .fl-inner{fill:var(--border-strong)}
+.flame-art.fl-new .fl-outer{stroke-dasharray:4 4} .flame-art.fl-new .fl-inner{fill:none}
+.btn-daily.fl-lit,.btn-daily.fl-risk{border-color:color-mix(in srgb,var(--flame) 55%,var(--border))}
+.fl-count{display:inline-grid;place-items:center;min-width:1.6em;height:1.6em;padding:0 .4em;border-radius:999px;background:var(--amber-soft);color:var(--amber);font-size:.85em;font-weight:700;font-variant-numeric:tabular-nums}
+.btn-daily.fl-risk .fl-count{background:var(--surface-2);color:var(--muted)}
+.flame-card{display:flex;align-items:center;gap:.8rem;max-width:25rem;padding:.7rem 1rem;border-radius:16px;background:var(--surface);border:1.5px solid var(--border);text-align:left}
+.flame-card .flame-art{width:40px;height:47px}
+.flame-card b{display:block;font-size:1.1rem;line-height:1.25}
+.flame-card span{display:block;color:var(--muted);font-size:.88rem;line-height:1.35}
+.flame-card.fl-lit{background:var(--amber-soft);border-color:color-mix(in srgb,var(--flame) 55%,transparent)}
+.flame-card.fl-lit span{color:var(--text)}
+.flame-card.fl-risk{border-color:color-mix(in srgb,var(--flame) 55%,var(--border));border-style:dashed}
+.flame-done{display:flex;justify-content:center;margin:1.2rem 0}
+@keyframes flIgnite{0%{transform:scale(.2);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:no-preference){ html:not([data-motion="reduce"]) .fl-lit .fl-body{animation:flIgnite .7s cubic-bezier(.2,.9,.3,1.2) both;transform-box:fill-box;transform-origin:50% 100%} }
+html[data-motion="full"] .fl-lit .fl-body{animation:flIgnite .7s cubic-bezier(.2,.9,.3,1.2) both;transform-box:fill-box;transform-origin:50% 100%}

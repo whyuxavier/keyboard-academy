@@ -72,6 +72,19 @@ export function streak() {
   return n;
 }
 
+// Вогник: серія днів саме зі щоденним тренуванням. Пропущений день — вогник згасає.
+// state: lit — сьогодні виконано; risk — учора виконано, сьогодні ще ні; out — серію втрачено; new — ще не починали.
+export function dailyFlame() {
+  const daily = store.data.daily;
+  const d = new Date();
+  const today = !!daily[dayKey(d)];
+  if (!today) d.setDate(d.getDate() - 1);
+  let n = 0;
+  while (daily[dayKey(d)]) { n++; d.setDate(d.getDate() - 1); }
+  const had = Object.values(daily).some(Boolean);
+  return { n, state: today ? 'lit' : n ? 'risk' : had ? 'out' : 'new' };
+}
+
 /* ---------- досягнення ---------- */
 import { COURSES } from '../content/lessons.js';
 import { SHORTCUTS, CATEGORIES } from '../content/shortcuts.js';
