@@ -1,5 +1,5 @@
 // Service Worker: офлайн-робота й оновлення. Змініть VERSION під час кожного оновлення файлів.
-const VERSION = 'ka-v1.0.7';
+const VERSION = 'ka-v1.0.8';
 const ASSETS = [
   './',
   'css/app.css',

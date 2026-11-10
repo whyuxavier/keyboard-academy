@@ -24,12 +24,12 @@ applySettings();
 hydrateIcons();
 
 /* ---------- налаштування вигляду ---------- */
-const darkMQ = matchMedia('(prefers-color-scheme: dark)');
 export function applySettings() {
   const s = store.data.settings;
   const root = document.documentElement;
-  const dark = s.theme === 'dark' || (s.theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+  const dark = s.theme === 'dark';
   root.dataset.theme = dark ? 'dark' : 'light';
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#15151A' : '#FFF6DF');
   root.dataset.contrast = s.contrast ? 'on' : 'off';
   root.dataset.large = s.large ? 'on' : 'off';
   root.dataset.motion = s.motion;
@@ -42,7 +42,6 @@ export function applySettings() {
     sb.querySelector('.lbl').textContent = s.sound ? 'Звук' : 'Без звуку';
   }
 }
-darkMQ.addEventListener?.('change', applySettings);
 window.addEventListener('ka:settings', applySettings);
 
 /* ---------- шапка ---------- */

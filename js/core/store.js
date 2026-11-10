@@ -5,7 +5,7 @@ const listeners = new Set();
 
 export function defaultSettings() {
   return {
-    theme: 'system',        // system | light | dark
+    theme: 'light',         // light | dark
     fontScale: 1,           // 1 | 1.125 | 1.25 | 1.4
     large: false,           // великий інтерфейс
     contrast: false,        // висока контрастність
@@ -54,7 +54,7 @@ export function sanitize(raw) {
   for (const k of Object.keys(ds)) {
     if (k in s && (typeof s[k] === typeof ds[k] || (ds[k] === null && isObj(s[k])))) ds[k] = s[k];
   }
-  if (!['system', 'light', 'dark'].includes(ds.theme)) ds.theme = 'system';
+  if (!['light', 'dark'].includes(ds.theme)) ds.theme = 'light'; // колишнє «як у системі» теж стає світлою
   if (![1, 1.125, 1.25, 1.4].includes(ds.fontScale)) ds.fontScale = 1;
   if (!['uk', 'en'].includes(ds.typingLang)) ds.typingLang = 'uk';
   if (!['auto', 'uk', 'en'].includes(ds.kbLayout)) ds.kbLayout = 'auto';

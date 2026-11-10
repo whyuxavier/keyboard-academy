@@ -14,7 +14,7 @@ export function render(el) {
     <div class="grid c2" style="align-items:start">
       <section class="card stack" aria-labelledby="s-look">
         <h2 id="s-look">Вигляд і зручність</h2>
-        <div class="field"><span class="lbl">Тема</span>${seg('theme', [['system', 'Як у системі'], ['light', 'Світла'], ['dark', 'Темна']], s.theme)}</div>
+        <div class="field"><span class="lbl">Тема</span>${seg('theme', [['light', 'Світла'], ['dark', 'Темна']], s.theme)}</div>
         <div class="field"><span class="lbl">Розмір тексту</span>${seg('fontScale', [[1, 'Звичайний'], [1.125, 'Більший'], [1.25, 'Великий'], [1.4, 'Дуже великий']], s.fontScale)}</div>
         <div class="field"><span class="lbl">Анімації</span>${seg('motion', [['system', 'Як у системі'], ['reduce', 'Мінімум'], ['full', 'Увімкнені']], s.motion)}</div>
         <div>
