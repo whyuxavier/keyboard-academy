@@ -172,9 +172,11 @@ function renderLesson(el, lang, idx) {
 
   function startKeysLesson() {
     let step = ex;
+    // На телефоні чи планшеті немає фізичних Tab, Caps Lock тощо — там клавіші натискають дотиком на намальованій клавіатурі.
+    const touch = matchMedia('(pointer: coarse)').matches;
     exHost.innerHTML = `<div class="card keys-step">
       <p data-step style="font-size:1.2rem;font-weight:600;min-height:3em"></p>
-      <div class="practice-zone" tabindex="0" role="application" aria-label="Зона натискання. Натискайте клавішу, описану вище. Esc — вийти.">${icon('keyboard')}&nbsp; Клацніть тут, а потім натисніть клавішу</div>
+      <div class="practice-zone${touch ? ' touch-hint' : ''}" tabindex="0" role="application" aria-label="Зона натискання. Натискайте клавішу, описану вище. Esc — вийти.">${icon('keyboard')}&nbsp; ${touch ? 'Торкніться потрібної клавіші на клавіатурі нижче' : 'Клацніть тут, а потім натисніть клавішу — або клацніть її на клавіатурі нижче'}</div>
       <p class="tb-feedback" aria-live="polite" style="margin-top:.8rem"></p>
       <div class="tb-visual" data-vis></div>
     </div>`;
@@ -197,16 +199,23 @@ function renderLesson(el, lang, idx) {
     const onKey = e => {
       if (e.key === 'Escape') { zone.blur(); return; }
       if (e.code !== 'Tab' || lesson.steps[step].codes.includes('Tab')) e.preventDefault();
-      if (busy) return;
+      press(e.code);
+    };
+    const onTap = e => {
+      const key = e.target.closest('.key[data-code]');
+      if (key) press(key.dataset.code);
+    };
+    const press = code => {
+      if (busy || !code) return;
       activity();
       const st = lesson.steps[step];
-      kb.flash(e.code, st.codes.includes(e.code) ? 'ok' : 'bad', 300);
+      kb.flash(code, st.codes.includes(code) ? 'ok' : 'bad', 300);
       acc.k++;
-      if (st.codes.includes(e.code)) {
+      if (st.codes.includes(code)) {
         busy = true;
         sound('success');
         fb.className = 'tb-feedback ok';
-        fb.textContent = `Правильно! Це ${keyName(e.code, lang)}.`;
+        fb.textContent = `Правильно! Це ${keyName(code, lang)}.`;
         setTimeout(() => {
           busy = false; fb.textContent = '';
           step++;
@@ -217,14 +226,16 @@ function renderLesson(el, lang, idx) {
         acc.e++;
         sound('error');
         fb.className = 'tb-feedback bad';
-        fb.textContent = `Це клавіша ${keyName(e.code, lang)}. Спробуйте ще раз — потрібна клавіша підсвічена синім.`;
+        fb.textContent = `Це клавіша ${keyName(code, lang)}. Спробуйте ще раз — потрібна клавіша підсвічена синім.`;
       }
     };
     zone.addEventListener('keydown', onKey);
+    kb.el.addEventListener('click', onTap);
+    kb.el.classList.add('kb-tap');
     zone.addEventListener('click', () => zone.focus());
     zone.addEventListener('focus', screen.reveal);
     show();
-    setTimeout(() => zone.focus({ preventScroll: true }), 80);
+    if (!touch) setTimeout(() => zone.focus({ preventScroll: true }), 80);
     cleanupKeys = () => { zone.removeEventListener('keydown', onKey); screen.stop(); };
   }
 

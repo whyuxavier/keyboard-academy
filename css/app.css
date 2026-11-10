@@ -649,3 +649,8 @@ table.t th{border-bottom-width:2px}
 .flame-card{border:2px solid var(--line);border-radius:var(--radius);box-shadow:var(--sh-sm)}
 .flame-card.fl-lit{border-color:var(--line)}
 .flame-card.fl-risk{border-color:var(--line);border-style:dashed;box-shadow:none}
+
+/* Урок-знайомство: клавіші намальованої клавіатури можна натискати дотиком або мишею. */
+.kb-tap .key{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.practice-zone.touch-hint{min-height:0;padding:.6rem .8rem;cursor:default;color:var(--text);background:var(--amber-soft);border-style:solid}
+@media (max-width:640px){ .keys-step{padding-inline:.5rem} main:has(.keys-step){padding-inline:.5rem} }
