@@ -100,6 +100,7 @@ export const ACHIEVEMENTS = [
   { id: 'cpm100', icon: 'gauge', name: '100 знаків за хвилину', desc: 'Наберіть 100 правильних знаків за хвилину в тесті швидкості.', test: d => d.speed.some(r => r.cpm >= 100 && r.sec >= 20) },
   { id: 'acc95', icon: 'target', name: 'Точність 95%', desc: 'Пройдіть тест швидкості (від 30 секунд) з точністю 95% або більше.', test: d => d.speed.some(r => r.acc >= 95 && r.sec >= 30) },
   { id: 'wpm30', icon: 'sparkle', name: '30 слів за хвилину', desc: 'Досягніть чистої швидкості 30 слів за хвилину.', test: d => d.speed.some(r => r.wpm >= 30 && r.sec >= 20) },
+  { id: 'six_seven', icon: 'six7', name: '67', desc: 'Six-seven! Завершіть тест швидкості з точністю рівно 67% або зі швидкістю рівно 67 знаків за хвилину.', test: d => d.speed.some(r => r.sec >= 20 && (Math.round(r.acc) === 67 || Math.round(r.cpm) === 67)) },
   { id: 'first_category', icon: 'combo', name: 'Перша категорія комбінацій', desc: 'Освойте всі комбінації однієї категорії.', test: () => CATEGORIES.some(c => SHORTCUTS.filter(s => s.cat === c.id).every(s => mastered(s.id))) },
   { id: 'shortcuts25', icon: 'combo', name: '25 комбінацій', desc: 'Освойте 25 комбінацій клавіш.', test: () => SHORTCUTS.filter(s => mastered(s.id)).length >= 25 },
   { id: 'streak7', icon: 'flame', name: '7 днів поспіль', desc: 'Займайтеся щонайменше хвилину сім днів підряд.', test: () => streak() >= 7 },
