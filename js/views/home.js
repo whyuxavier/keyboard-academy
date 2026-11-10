@@ -27,51 +27,51 @@ function heroArt() {
       const id = `${ri}-${i}`;
       const home = r.home && r.home.includes(i);
       const pr = id in press ? ` ha-press" style="animation-delay:${(0.5 + press[id] * 0.162).toFixed(2)}s` : '';
-      keys += `<rect class="ha-key${home ? ' home' : ''}${pr}" x="${x}" y="${r.y}" width="33" height="33" rx="7"/>`;
+      keys += `<rect class="ha-key${home ? ' home' : ''}${pr}" x="${x}" y="${r.y}" width="33" height="33" rx="4"/>`;
       if (home) keys += `<rect class="ha-blue" x="${x + 11}" y="${r.y + 25}" width="11" height="3" rx="1.5"/>`;
     }
   });
   // широкі клавіші
-  keys += `<rect class="ha-key" x="${34}" y="308" width="66" height="33" rx="7"/>
-    <rect class="ha-key ha-press" style="animation-delay:${(0.5 + 7 * 0.162).toFixed(2)}s" x="108" y="308" width="226" height="33" rx="7"/>
-    <rect class="ha-key" x="342" y="308" width="66" height="33" rx="7"/>
-    <rect class="ha-key" x="416" y="308" width="70" height="33" rx="7"/>
-    <rect class="ha-key" x="${470}" y="232" width="16" height="33" rx="5"/>
-    <rect class="ha-key" x="${438}" y="270" width="48" height="33" rx="7"/>`;
+  keys += `<rect class="ha-key" x="${34}" y="308" width="66" height="33" rx="4"/>
+    <rect class="ha-key ha-press" style="animation-delay:${(0.5 + 7 * 0.162).toFixed(2)}s" x="108" y="308" width="226" height="33" rx="4"/>
+    <rect class="ha-key" x="342" y="308" width="66" height="33" rx="4"/>
+    <rect class="ha-key" x="416" y="308" width="70" height="33" rx="4"/>
+    <rect class="ha-key" x="${470}" y="232" width="16" height="33" rx="3"/>
+    <rect class="ha-key" x="${438}" y="270" width="48" height="33" rx="4"/>`;
   return `<svg viewBox="0 0 520 430" role="img" aria-label="Ілюстрація: на клавіатурі по черзі натискаються клавіші, а у вікні з’являється текст «Привіт, світе!»" class="ha-anim">
     <defs><clipPath id="haClip"><rect x="62" y="74" width="380" height="60"/></clipPath></defs>
     <!-- вікно з текстом -->
-    <rect class="ha-surface" x="40" y="26" width="440" height="128" rx="18" stroke="var(--border-strong)" stroke-width="1.5"/>
+    <rect class="ha-shadow" x="46" y="32" width="440" height="128" rx="6"/><rect class="ha-surface" x="40" y="26" width="440" height="128" rx="6" stroke="var(--line)" stroke-width="2.5"/>
     <circle class="ha-muted" cx="64" cy="48" r="5" opacity=".35"/><circle class="ha-muted" cx="80" cy="48" r="5" opacity=".35"/><circle class="ha-muted" cx="96" cy="48" r="5" opacity=".35"/>
-    <rect class="ha-surface2" x="130" y="40" width="210" height="16" rx="8"/>
+    <rect class="ha-surface2" x="130" y="40" width="210" height="16" rx="3"/>
     <text class="ha-text" x="72" y="118" font-size="34" font-weight="600" style="font-family:var(--font)">Привіт, світе!</text>
     <g clip-path="url(#haClip)"><rect class="ha-surface ha-cover" x="66" y="76" width="300" height="56"/></g>
     <rect class="ha-blue ha-caret" x="340" y="86" width="3" height="40" rx="1.5"/>
     <!-- клавіатура -->
-    <rect class="ha-surface2" x="20" y="178" width="480" height="180" rx="22" stroke="var(--border-strong)" stroke-width="1.5"/>
+    <rect class="ha-shadow" x="26" y="184" width="480" height="180" rx="6"/><rect class="ha-surface2" x="20" y="178" width="480" height="180" rx="6" stroke="var(--line)" stroke-width="2.5"/>
     ${keys}
     <!-- пальці на основній позиції -->
     <circle class="ha-violet" cx="${46 + 3 * 38 + 16.5}" cy="248" r="5" opacity=".55"/>
     <circle class="ha-violet" cx="${46 + 6 * 38 + 16.5}" cy="248" r="5" opacity=".55"/>
     <!-- бейдж швидкості -->
     <g class="ha-pop" style="animation-delay:2.7s">
-      <rect class="ha-green-soft" x="366" y="4" width="142" height="44" rx="22" stroke="var(--green)" stroke-width="1.5"/>
-      <path d="M388 34a12 12 0 0124 0" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"/><path d="M400 34l6-7" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"/>
-      <text x="420" y="32" font-size="16" font-weight="700" fill="var(--green)" style="font-family:var(--font)">42 сл/хв</text>
+      <rect class="ha-shadow" x="372" y="10" width="142" height="44" rx="6"/><rect class="ha-green-soft" x="366" y="4" width="142" height="44" rx="6" stroke="var(--line)" stroke-width="2.5"/>
+      <path d="M388 34a12 12 0 0124 0" fill="none" stroke="var(--text)" stroke-width="2.5" stroke-linecap="round"/><path d="M400 34l6-7" stroke="var(--text)" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="420" y="32" font-size="16" font-weight="700" fill="var(--text)" style="font-family:var(--font)">42 сл/хв</text>
     </g>
     <!-- комбінація клавіш -->
     <g class="ha-pop" style="animation-delay:2.95s">
-      <rect class="ha-surface" x="18" y="376" width="148" height="46" rx="14" stroke="var(--border-strong)" stroke-width="1.5"/>
-      <rect class="ha-blue-soft" x="28" y="384" width="52" height="30" rx="7" stroke="var(--blue)" stroke-width="1.5"/>
-      <text x="54" y="405" text-anchor="middle" font-size="14" font-weight="700" fill="var(--blue)" style="font-family:var(--font)">Ctrl</text>
+      <rect class="ha-shadow" x="24" y="382" width="148" height="46" rx="6"/><rect class="ha-surface" x="18" y="376" width="148" height="46" rx="6" stroke="var(--line)" stroke-width="2.5"/>
+      <rect class="ha-blue-soft" x="28" y="384" width="52" height="30" rx="4" stroke="var(--line)" stroke-width="2.5"/>
+      <text x="54" y="405" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text)" style="font-family:var(--font)">Ctrl</text>
       <text x="92" y="405" text-anchor="middle" font-size="16" font-weight="700" class="ha-muted" style="font-family:var(--font)">+</text>
-      <rect class="ha-blue-soft" x="104" y="384" width="52" height="30" rx="7" stroke="var(--blue)" stroke-width="1.5"/>
-      <text x="130" y="405" text-anchor="middle" font-size="14" font-weight="700" fill="var(--blue)" style="font-family:var(--font)">C</text>
+      <rect class="ha-blue-soft" x="104" y="384" width="52" height="30" rx="4" stroke="var(--line)" stroke-width="2.5"/>
+      <text x="130" y="405" text-anchor="middle" font-size="14" font-weight="700" fill="var(--text)" style="font-family:var(--font)">C</text>
     </g>
     <!-- мови -->
     <g class="ha-pop" style="animation-delay:3.2s">
-      <rect class="ha-violet-soft" x="376" y="378" width="126" height="42" rx="21" stroke="var(--violet)" stroke-width="1.5"/>
-      <text x="439" y="405" text-anchor="middle" font-size="15" font-weight="700" fill="var(--violet)" style="font-family:var(--font)">УКР · ENG</text>
+      <rect class="ha-shadow" x="382" y="384" width="126" height="42" rx="6"/><rect class="ha-violet-soft" x="376" y="378" width="126" height="42" rx="6" stroke="var(--line)" stroke-width="2.5"/>
+      <text x="439" y="405" text-anchor="middle" font-size="15" font-weight="700" fill="var(--text)" style="font-family:var(--font)">УКР · ENG</text>
     </g>
   </svg>`;
 }
@@ -101,7 +101,7 @@ export function render(el) {
       <div>
         <h1 id="hero-title">Клавіатура — <em>це просто</em></h1>
         <p class="hero-lead">Сліпий друк, швидкість і корисні комбінації клавіш. Для будь-якого віку, українською та англійською.</p>
-        <div class="btn-row">
+        <div class="hero-actions">
           <a class="btn primary" href="${primaryHref}">${icon('play')} ${esc(primaryLabel)}</a>
           <a class="btn" href="#/speed">${icon('gauge')} Перевірити швидкість</a>
           <a class="btn btn-daily fl-${fl.state}" href="#/daily" aria-label="Щоденне тренування: ${flLabel}">${flameArt(fl.state)} Щоденне тренування${fl.n ? `<span class="fl-count" aria-hidden="true">${fl.n}</span>` : ''}</a>
